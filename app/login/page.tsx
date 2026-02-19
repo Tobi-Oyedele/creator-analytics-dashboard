@@ -53,7 +53,7 @@ export default function LoginPage() {
       <div className="hidden lg:flex lg:w-[52%] xl:w-[55%] bg-slate-950 relative overflow-hidden flex-col justify-between p-12 animate-fade-in">
         {/* Ambient glows */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full bg-emerald-500/15 blur-3xl" />
+          <div className="absolute -top-32 -right-32 w-120 h-120 rounded-full bg-emerald-500/15 blur-3xl" />
           <div className="absolute bottom-0 -left-24 w-80 h-80 rounded-full bg-emerald-600/10 blur-3xl" />
         </div>
 
@@ -119,7 +119,7 @@ export default function LoginPage() {
               },
             ].map(({ d, label }) => (
               <li key={label} className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
                   <svg
                     className="w-4 h-4 text-emerald-400"
                     fill="none"
@@ -156,11 +156,12 @@ export default function LoginPage() {
               ))}
             </div>
             <p className="text-slate-300 text-sm leading-relaxed">
-              &ldquo;CreatorAnalytics helped me understand what content resonates
-              most. My engagement rate doubled in just 3 months.&rdquo;
+              &ldquo;CreatorAnalytics helped me understand what content
+              resonates most. My engagement rate doubled in just 3
+              months.&rdquo;
             </p>
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 rounded-full bg-linear-to-br from-emerald-400 to-teal-500 flex items-center justify-center shrink-0">
                 <span className="text-white text-xs font-bold">AK</span>
               </div>
               <div>
@@ -178,7 +179,7 @@ export default function LoginPage() {
 
       {/* ── Right form panel ── */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-16 sm:px-10 bg-white">
-        <div className="w-full max-w-[360px] animate-slide-up">
+        <div className="w-full max-w-90 animate-slide-up">
           {/* Mobile-only logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
             <div className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center shadow-md shadow-emerald-400/30">
@@ -250,9 +251,6 @@ export default function LoginPage() {
                 >
                   Password
                 </label>
-                <span className="text-xs font-medium text-emerald-600 cursor-pointer hover:text-emerald-700 transition-colors">
-                  Forgot password?
-                </span>
               </div>
               <input
                 type="password"
@@ -308,21 +306,6 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-6">
-            <div className="flex-1 h-px bg-slate-100" />
-            <span className="text-xs text-slate-400">or</span>
-            <div className="flex-1 h-px bg-slate-100" />
-          </div>
-
-          {/* Sign-up prompt */}
-          <p className="text-center text-sm text-slate-500">
-            Don&apos;t have an account?{" "}
-            <span className="font-medium text-emerald-600 cursor-pointer hover:text-emerald-700 transition-colors">
-              Sign up for free
-            </span>
-          </p>
 
           {/* Footer note */}
           <p className="mt-10 text-center text-xs text-slate-400 leading-relaxed">

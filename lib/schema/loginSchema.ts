@@ -3,7 +3,9 @@ import z from "zod";
 export const emailSchema = z
   .string()
   .min(1, "Email is required")
-  .email("Enter a valid email address")
+  .refine((val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), {
+    message: "Enter a valid email address",
+  })
   .transform((email) => email.trim().toLowerCase());
 
 export const passwordSchema = z
