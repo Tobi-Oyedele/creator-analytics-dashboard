@@ -49,54 +49,43 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080F25] relative overflow-hidden flex items-center justify-center">
-
+    <div className="min-h-screen bg-abyss relative overflow-hidden flex items-center justify-center">
       {/* ── Background blobs ── */}
       {/* Top-left organic blob */}
       <div
-        className="pointer-events-none absolute -top-48 -left-48 w-[580px] h-[480px] bg-[#0D1A3A]"
+        className="pointer-events-none absolute -top-48 -left-48 w-145 h-120 bg-midnight"
         style={{ borderRadius: "62% 38% 46% 54% / 60% 44% 56% 40%" }}
       />
       {/* Bottom-right organic blob */}
       <div
-        className="pointer-events-none absolute -bottom-40 -right-40 w-[520px] h-[440px] bg-[#0D1A3A]"
+        className="pointer-events-none absolute -bottom-40 -right-40 w-130 h-110 bg-midnight"
         style={{ borderRadius: "42% 58% 34% 66% / 48% 62% 38% 52%" }}
       />
       {/* Mid-left accent blob */}
       <div
-        className="pointer-events-none absolute top-[30%] -left-24 w-[260px] h-[320px] bg-[#0D1A3A] opacity-60"
+        className="pointer-events-none absolute top-[30%] -left-24 w-65 h-80 bg-midnight opacity-60"
         style={{ borderRadius: "70% 30% 60% 40% / 50% 60% 40% 50%" }}
       />
       {/* Top-right accent blob */}
       <div
-        className="pointer-events-none absolute -top-20 right-[10%] w-[200px] h-[240px] bg-[#0D1A3A] opacity-50"
+        className="pointer-events-none absolute -top-20 right-[10%] w-50 h-60 bg-midnight opacity-50"
         style={{ borderRadius: "38% 62% 55% 45% / 45% 55% 45% 55%" }}
       />
 
-      {/* ── Main content ── */}
       <div className="relative z-10 w-full max-w-[320px] px-6 animate-fade-in">
-
-        {/* Logo icon */}
         <div className="flex justify-center mb-5">
-          <TrendingUp
-            className="w-14 h-14 text-white"
-            strokeWidth={1.25}
-          />
+          <TrendingUp className="w-14 h-14 text-white" strokeWidth={1.25} />
         </div>
 
-        {/* App name */}
         <h1 className="text-white text-center text-lg font-bold tracking-[0.25em] uppercase mb-10">
           CreatorAnalytics
         </h1>
 
-        {/* ── Form ── */}
         <form onSubmit={handleSubmit} className="space-y-3.5">
-
-          {/* Email / Username */}
           <div>
             <div className="relative">
               <User
-                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-white/50"
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-white/50"
                 strokeWidth={1.5}
               />
               <input
@@ -124,7 +113,7 @@ export default function LoginPage() {
           <div>
             <div className="relative">
               <Lock
-                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-white/50"
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-white/50"
                 strokeWidth={1.5}
               />
               <input
