@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { loginSchema, LoginSchemaType } from "@/lib/schema/loginSchema";
 import { useRouter } from "next/navigation";
+import { TrendingUp, User, Lock } from "lucide-react";
 
 type LoginErrors = {
   email?: string;
@@ -48,159 +49,139 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-6 animate-fade-in">
-      <div className="w-full max-w-sm">
-        {/* Card */}
-        <div className="bg-white rounded-2xl border border-zinc-200/60 shadow-2xl shadow-black/50 px-8 py-10 animate-slide-up">
+    <div className="min-h-screen bg-[#080F25] relative overflow-hidden flex items-center justify-center">
 
-          {/* Brand mark */}
-          <div className="flex items-center gap-2.5 mb-10">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/30 shrink-0">
-              <svg
-                className="w-4 h-4 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                />
-              </svg>
-            </div>
-            <span className="text-slate-900 font-semibold text-[15px] tracking-tight">
-              CreatorAnalytics
-            </span>
-          </div>
+      {/* ── Background blobs ── */}
+      {/* Top-left organic blob */}
+      <div
+        className="pointer-events-none absolute -top-48 -left-48 w-[580px] h-[480px] bg-[#0D1A3A]"
+        style={{ borderRadius: "62% 38% 46% 54% / 60% 44% 56% 40%" }}
+      />
+      {/* Bottom-right organic blob */}
+      <div
+        className="pointer-events-none absolute -bottom-40 -right-40 w-[520px] h-[440px] bg-[#0D1A3A]"
+        style={{ borderRadius: "42% 58% 34% 66% / 48% 62% 38% 52%" }}
+      />
+      {/* Mid-left accent blob */}
+      <div
+        className="pointer-events-none absolute top-[30%] -left-24 w-[260px] h-[320px] bg-[#0D1A3A] opacity-60"
+        style={{ borderRadius: "70% 30% 60% 40% / 50% 60% 40% 50%" }}
+      />
+      {/* Top-right accent blob */}
+      <div
+        className="pointer-events-none absolute -top-20 right-[10%] w-[200px] h-[240px] bg-[#0D1A3A] opacity-50"
+        style={{ borderRadius: "38% 62% 55% 45% / 45% 55% 45% 55%" }}
+      />
 
-          {/* Heading */}
-          <div className="mb-8">
-            <h1 className="text-[22px] font-bold text-slate-900 tracking-tight leading-snug">
-              Welcome back
-            </h1>
-            <p className="text-slate-500 text-sm mt-1.5 leading-relaxed">
-              Sign in to your account to continue
-            </p>
-          </div>
+      {/* ── Main content ── */}
+      <div className="relative z-10 w-full max-w-[320px] px-6 animate-fade-in">
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
-            <div className="space-y-1.5">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-slate-700"
-              >
-                Email address
-              </label>
+        {/* Logo icon */}
+        <div className="flex justify-center mb-5">
+          <TrendingUp
+            className="w-14 h-14 text-white"
+            strokeWidth={1.25}
+          />
+        </div>
+
+        {/* App name */}
+        <h1 className="text-white text-center text-lg font-bold tracking-[0.25em] uppercase mb-10">
+          CreatorAnalytics
+        </h1>
+
+        {/* ── Form ── */}
+        <form onSubmit={handleSubmit} className="space-y-3.5">
+
+          {/* Email / Username */}
+          <div>
+            <div className="relative">
+              <User
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-white/50"
+                strokeWidth={1.5}
+              />
               <input
                 type="email"
                 id="email"
                 name="email"
                 onChange={handleChange}
                 value={formData.email}
-                placeholder="you@example.com"
-                className={`w-full px-3.5 py-2.5 rounded-lg border text-sm text-slate-900 placeholder:text-slate-400 bg-zinc-50 transition-all duration-150 outline-none ${
+                placeholder="Username"
+                className={`w-full bg-transparent border rounded-lg pl-10 pr-4 py-3.5 text-sm text-white placeholder:text-white/40 outline-none transition-colors duration-150 ${
                   error?.email
-                    ? "border-red-400 ring-2 ring-red-100 bg-white focus:border-red-400"
-                    : "border-zinc-200 hover:border-zinc-300 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15"
+                    ? "border-red-500/60 focus:border-red-400/80"
+                    : "border-white/20 hover:border-white/35 focus:border-white/55"
                 }`}
               />
-              {error?.email && (
-                <p className="mt-1 text-xs text-red-500 font-medium">
-                  {error.email}
-                </p>
-              )}
             </div>
+            {error?.email && (
+              <p className="mt-1.5 text-xs text-red-400 font-medium pl-1">
+                {error.email}
+              </p>
+            )}
+          </div>
 
-            {/* Password */}
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-slate-700"
-                >
-                  Password
-                </label>
-              </div>
+          {/* Password */}
+          <div>
+            <div className="relative">
+              <Lock
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-white/50"
+                strokeWidth={1.5}
+              />
               <input
                 type="password"
                 id="password"
                 name="password"
                 onChange={handleChange}
                 value={formData.password}
-                placeholder="••••••••"
-                className={`w-full px-3.5 py-2.5 rounded-lg border text-sm text-slate-900 placeholder:text-slate-400 bg-zinc-50 transition-all duration-150 outline-none ${
+                placeholder="Password"
+                className={`w-full bg-transparent border rounded-lg pl-10 pr-4 py-3.5 text-sm text-white placeholder:text-white/40 outline-none transition-colors duration-150 ${
                   error?.password
-                    ? "border-red-400 ring-2 ring-red-100 bg-white focus:border-red-400"
-                    : "border-zinc-200 hover:border-zinc-300 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15"
+                    ? "border-red-500/60 focus:border-red-400/80"
+                    : "border-white/20 hover:border-white/35 focus:border-white/55"
                 }`}
               />
-              {error?.password && (
-                <p className="mt-1 text-xs text-red-500 font-medium">
-                  {error.password}
-                </p>
-              )}
             </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full mt-1 bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-950 disabled:bg-zinc-200 text-white disabled:text-zinc-400 text-sm font-semibold py-2.5 px-4 rounded-lg transition-all duration-150 disabled:cursor-not-allowed shadow-sm hover:shadow-md disabled:shadow-none"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg
-                    className="animate-spin w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                    />
-                  </svg>
-                  Signing in…
-                </span>
-              ) : (
-                "Sign in"
-              )}
-            </button>
-          </form>
-
-          {/* Footer */}
-          <div className="mt-8 pt-6 border-t border-zinc-100">
-            <p className="text-center text-xs text-zinc-400 leading-relaxed">
-              Secure login powered by{" "}
-              <span className="text-zinc-600 font-medium">CreatorAnalytics</span>
-            </p>
+            {error?.password && (
+              <p className="mt-1.5 text-xs text-red-400 font-medium pl-1">
+                {error.password}
+              </p>
+            )}
           </div>
-        </div>
 
-        {/* Below-card fine print */}
-        <p className="mt-5 text-center text-xs text-zinc-600 leading-relaxed">
-          By signing in, you agree to our{" "}
-          <span className="underline underline-offset-2 cursor-pointer hover:text-zinc-400 transition-colors">
-            Terms of Service
-          </span>{" "}
-          and{" "}
-          <span className="underline underline-offset-2 cursor-pointer hover:text-zinc-400 transition-colors">
-            Privacy Policy
-          </span>
-          .
-        </p>
+          {/* LOGIN button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full mt-2 bg-white hover:bg-white/90 active:bg-white/80 disabled:bg-white/30 text-[#080F25] disabled:text-[#080F25]/40 text-sm font-bold py-3.5 px-4 rounded-lg tracking-[0.18em] uppercase transition-all duration-150 disabled:cursor-not-allowed"
+          >
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg
+                  className="animate-spin w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+                Signing in…
+              </span>
+            ) : (
+              "LOGIN"
+            )}
+          </button>
+        </form>
       </div>
     </div>
   );
