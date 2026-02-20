@@ -78,7 +78,7 @@ export default function LoginPage() {
         </div>
 
         <h1 className="text-white text-center text-lg font-bold tracking-[0.25em] uppercase mb-10">
-          CreatorAnalytics
+          Creator Analytics
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-3.5">
@@ -141,7 +141,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 bg-white hover:bg-white/90 active:bg-white/80 disabled:bg-white/30 text-[#080F25] disabled:text-[#080F25]/40 text-sm font-bold py-3.5 px-4 rounded-lg tracking-[0.18em] uppercase transition-all duration-150 disabled:cursor-not-allowed"
+            className="w-full mt-2 bg-white hover:bg-white/90 active:bg-white/80 disabled:bg-white/30 text-abyss disabled:text-abyss/40 text-sm font-bold py-3.5 px-4 rounded-lg tracking-[0.18em] uppercase transition-all duration-150 disabled:cursor-not-allowed"
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">
