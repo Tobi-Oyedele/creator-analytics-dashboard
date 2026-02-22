@@ -2,28 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   TrendingUp,
   DollarSign,
-  Settings,
-  Bell,
   Menu,
   X,
   ChevronLeft,
   ChevronRight,
+  LogOut,
 } from "lucide-react";
 
 const mainNav = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Analytics", href: "/dashboard/analytics", icon: TrendingUp },
   { name: "Revenue", href: "/dashboard/revenue", icon: DollarSign },
-];
-
-const secondaryNav = [
-  { name: "Notifications", href: "/dashboard/notifications", icon: Bell },
-  { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
 function NavLink({
@@ -80,6 +74,11 @@ export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    router.push("/login");
+  };
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -90,26 +89,31 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile hamburger
-          Fades out once the drawer opens so it no longer sits on top of the sidebar */}
-      <button
-        onClick={() => setIsMobileMenuOpen(true)}
-        className={`
-          lg:hidden fixed top-4 left-4 z-50
-          p-2 bg-abyss text-slate-300 rounded-lg border border-white/10 shadow-lg
-          hover:text-white transition-all duration-200
-          ${isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"}
-        `}
-        aria-label="Open menu"
-      >
-        <Menu size={18} />
-      </button>
+      {/* Mobile top nav */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-40 h-18 bg-abyss border-b border-white/6 flex items-center justify-between px-4">
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="flex items-center justify-center w-9 h-9 -ml-1 text-slate-400 hover:text-white transition-colors duration-150"
+          aria-label="Open menu"
+        >
+          <Menu size={20} />
+        </button>
 
-      {/* Backdrop — always in the DOM, fades in/out via opacity */}
+        <div className="flex items-center gap-2">
+          <p className="text-[15px] font-semibold text-white tracking-tight leading-none">
+            Creator Analytics
+          </p>
+          <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center shrink-0 shadow-sm">
+            <TrendingUp size={13} className="text-white" />
+          </div>
+        </div>
+      </header>
+
+      {/* Backdrop */}
       <div
         onClick={closeMobileMenu}
         className={`
-          lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30
+          lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40
           transition-opacity duration-300
           ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}
@@ -118,11 +122,14 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={`
-          fixed lg:static inset-y-0 left-0 z-40
+          fixed lg:static inset-y-0 left-0 z-50
           w-60 bg-abyss flex flex-col overflow-hidden
           border-r border-white/6
-          transition-[transform,width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]
-          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+          lg:transition-[transform,width] lg:duration-300 lg:ease-[cubic-bezier(0.32,0.72,0,1)]
+          ${isMobileMenuOpen
+            ? "translate-x-0 animate-slide-in-left shadow-[4px_0_32px_rgba(0,0,0,0.5)]"
+            : "-translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in"
+          }
           ${isCollapsed ? "lg:w-17" : ""}
         `}
       >
@@ -158,13 +165,13 @@ export default function Sidebar() {
             </button>
           )}
 
-          {/* Mobile close button — lives inside the sidebar header so it never overlaps */}
+          {/* Mobile close button — lives inside the sidebar header */}
           <button
             onClick={closeMobileMenu}
             className="lg:hidden flex items-center justify-center w-6 h-6 rounded-md text-slate-500 hover:text-slate-300 hover:bg-white/6 transition-all duration-150 shrink-0"
             aria-label="Close menu"
           >
-            <X size={14} />
+            <X size={20} />
           </button>
         </div>
 
@@ -200,50 +207,21 @@ export default function Sidebar() {
               isCollapsed ? "lg:mx-1 mx-3" : "mx-3"
             }`}
           />
-
-          {/* Secondary nav */}
-          <div className="flex flex-col gap-0.5">
-            {secondaryNav.map((item) => (
-              <NavLink
-                key={item.href}
-                item={item}
-                onClick={closeMobileMenu}
-                isActive={isActiveRoute(item.href)}
-                collapsed={isCollapsed}
-              />
-            ))}
-          </div>
         </nav>
 
-        {/* User section */}
-        <div className="border-t border-white/6 px-2 py-2">
+        {/* Logout section */}
+        <div className="p-3 border-t border-white/6">
           <button
-            title={isCollapsed ? "Tobz — Creator" : undefined}
-            className={`
-              w-full flex items-center gap-3 px-3 py-2.5 rounded-md
-              hover:bg-white/4 transition-all duration-150 group
-              ${isCollapsed ? "lg:justify-center lg:gap-0 lg:px-0" : ""}
-            `}
+            onClick={handleLogout}
+            title={isCollapsed ? "Logout" : undefined}
+            className={`w-full cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-white/4 transition-all duration-150 ${isCollapsed ? "lg:justify-center lg:gap-0 lg:p-2" : ""}`}
           >
-            <div className="w-7 h-7 rounded-full bg-linear-to-br from-blue-500 to-blue-700 flex items-center justify-center shrink-0 text-[11px] font-bold text-white shadow-sm ring-1 ring-white/10 group-hover:ring-white/20 transition-all duration-150">
-              T
-            </div>
-            <div
-              className={`flex-1 text-left min-w-0 ${isCollapsed ? "lg:hidden" : ""}`}
+            <LogOut size={14} className="text-slate-500" />
+            <span
+              className={`text-sm text-slate-400 ${isCollapsed ? "lg:hidden" : ""}`}
             >
-              <p className="text-[13px] font-medium text-slate-200 leading-none truncate">
-                Tobz
-              </p>
-              <p className="text-[11px] text-slate-500 mt-0.75 leading-none">
-                Creator
-              </p>
-            </div>
-            <ChevronRight
-              size={13}
-              className={`text-slate-600 group-hover:text-slate-400 transition-colors duration-150 shrink-0 ${
-                isCollapsed ? "lg:hidden" : ""
-              }`}
-            />
+              Logout
+            </span>
           </button>
         </div>
       </aside>
