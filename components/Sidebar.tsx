@@ -7,8 +7,6 @@ import {
   LayoutDashboard,
   TrendingUp,
   DollarSign,
-  FileText,
-  Users,
   Settings,
   Bell,
   Menu,
@@ -21,8 +19,6 @@ const mainNav = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Analytics", href: "/dashboard/analytics", icon: TrendingUp },
   { name: "Revenue", href: "/dashboard/revenue", icon: DollarSign },
-  { name: "Content Library", href: "/dashboard/content", icon: FileText },
-  { name: "Audience", href: "/dashboard/audience", icon: Users },
 ];
 
 const secondaryNav = [
@@ -61,7 +57,9 @@ function NavLink({
       <Icon
         size={16}
         className={`shrink-0 transition-colors duration-150 ${
-          isActive ? "text-blue-400" : "text-slate-500 group-hover:text-slate-300"
+          isActive
+            ? "text-blue-400"
+            : "text-slate-500 group-hover:text-slate-300"
         }`}
       />
       <span className={`font-medium truncate ${collapsed ? "lg:hidden" : ""}`}>
@@ -230,7 +228,9 @@ export default function Sidebar() {
             <div className="w-7 h-7 rounded-full bg-linear-to-br from-blue-500 to-blue-700 flex items-center justify-center shrink-0 text-[11px] font-bold text-white shadow-sm ring-1 ring-white/10 group-hover:ring-white/20 transition-all duration-150">
               T
             </div>
-            <div className={`flex-1 text-left min-w-0 ${isCollapsed ? "lg:hidden" : ""}`}>
+            <div
+              className={`flex-1 text-left min-w-0 ${isCollapsed ? "lg:hidden" : ""}`}
+            >
               <p className="text-[13px] font-medium text-slate-200 leading-none truncate">
                 Tobz
               </p>
