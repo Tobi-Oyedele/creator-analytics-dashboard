@@ -42,7 +42,6 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
 
-    console.log("Login data is valid:", result.data);
     setTimeout(() => {
       router.push("/dashboard");
     }, 800);
